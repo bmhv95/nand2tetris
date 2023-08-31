@@ -1,0 +1,10 @@
+/** If 3 bits are equal, OUT = 1 */
+CHIP Eq3{
+	IN a, b ,c;
+	OUT out;
+	PARTS:
+	Xor(a=a, b=b, out=neq1);
+	Xor(a=b, b=c, out=neq2);
+	Or(a=neq1, b=neq2, out=outOr);
+	Not(in=outOr, out=out);
+}

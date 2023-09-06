@@ -17,4 +17,10 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Mux4Way16(a=RegMux,b=in,c=false,d=false,sel[0]=load,sel[1]=reset,out=MuxOut);
+    Or(a=load,b=inc,out=orOne);
+    Or(a=orOne,b=reset,out=orCtrl);
+    Register(in=MuxOut,load=orCtrl,out=out,out=RegOut);
+    Inc16(in=RegOut,out=RegInc);
+    Mux16(a=RegOut,b=RegInc,sel=inc,out=RegMux);
 }
